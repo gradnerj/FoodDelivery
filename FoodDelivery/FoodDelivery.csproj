@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>cac7ddbf-c1c3-49dd-b055-cb25b1c5c564</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,16 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\FoodDelivery.DataAccess.csproj" />
+    <ProjectReference Include="..\FoodDelivery.Models\FoodDelivery.Models.csproj" />
+    <ProjectReference Include="..\FoodDelivery.Utility\FoodDelivery.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Admin\" />
   </ItemGroup>
 
 </Project>
