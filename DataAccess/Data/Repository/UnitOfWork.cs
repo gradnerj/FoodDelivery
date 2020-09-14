@@ -7,8 +7,6 @@ using System.Text;
 namespace FoodDelivery.DataAccess.Data.Repository {
     public class UnitOfWork : IUnitOfWork {
 
-        
-
         private readonly ApplicationDbContext _context;
         public ICategoryRepository Category { get; private set; }
         public UnitOfWork(ApplicationDbContext context) {
