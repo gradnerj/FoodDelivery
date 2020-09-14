@@ -5,12 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IUnitofWork\" />
-    <Folder Include="UnitofWork\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
   </ItemGroup>
 

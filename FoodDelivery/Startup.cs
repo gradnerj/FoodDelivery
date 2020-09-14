@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using FoodDelivery.Data;
+using FoodDelivery.DataAccess.Data.Repository.IRepository;
+using FoodDelivery.DataAccess.Data.Repository;
 
 namespace FoodDelivery {
     public class Startup {
@@ -20,6 +22,9 @@ namespace FoodDelivery {
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,11 +44,11 @@ namespace FoodDelivery {
             app.UseRouting();
 
             app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            app.UseMvc();
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapRazorPages();
+            //});
         }
     }
 }
