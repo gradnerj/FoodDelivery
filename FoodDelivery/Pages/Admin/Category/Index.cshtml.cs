@@ -8,7 +8,7 @@ namespace FoodDelivery.Pages.Admin {
     public class CategoryIndexModel : PageModel
     {
 
-        public async Task OnGet()
+        public void OnGet()
         {
         }
     }
