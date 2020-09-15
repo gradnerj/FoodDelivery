@@ -1,14 +1,11 @@
 ﻿using FoodDelivery.Data;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using FoodDelivery.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FoodDelivery.DataAccess.Data.Repository {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository {
+    public class CategoryRepository : Repository<FoodDelivery.Models.Category>, ICategoryRepository {
 
         private readonly ApplicationDbContext _context;
 
@@ -23,7 +20,7 @@ namespace FoodDelivery.DataAccess.Data.Repository {
             });
         }
 
-        public void Update(Category category) {
+        public void Update(FoodDelivery.Models.Category category) {
             var objFromDb = _context.Category.FirstOrDefault(c => c.Id == category.Id);
             objFromDb.Name = category.Name;
             objFromDb.DisplayOrder = category.DisplayOrder;

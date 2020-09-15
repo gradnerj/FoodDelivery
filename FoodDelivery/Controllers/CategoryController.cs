@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using Microsoft.AspNetCore.Http;
+﻿using FoodDelivery.DataAccess.Data.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 
 namespace FoodDelivery.Controllers {
     [Route("api/[controller]")]
