@@ -23,8 +23,4 @@
     <ProjectReference Include="..\FoodDelivery.Utility\FoodDelivery.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Admin\" />
-  </ItemGroup>
-
 </Project>
