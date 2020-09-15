@@ -32,8 +32,19 @@ namespace FoodDelivery.Pages.Admin.Category {
             return Page();
         }
 
-        public void OnPost() {
-
+        public IActionResult OnPost() {
+            if (!ModelState.IsValid) {
+                return Page();
+            }
+            if(CategoryObj.Id == 0) {
+                _unitOfWork.Category.Add(CategoryObj);
+                _unitOfWork.Save();
+            }
+            else {
+                // Update Category object
+                _unitOfWork.Category.Update(CategoryObj);
+            }
+            return RedirectToPage("./Index");
         }
     }
 }
