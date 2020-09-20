@@ -21,8 +21,10 @@ namespace FoodDelivery {
             services.AddRazorPages();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
-
+                options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext"),
+                sqlServerOptions => sqlServerOptions.MigrationsAssembly("FoodDelivery.DataAccess")
+                ));
+                
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
         }
