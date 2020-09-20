@@ -9,11 +9,12 @@ namespace FoodDelivery.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext (DbContextOptions<ApplicationDbContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
 
-        public DbSet<FoodDelivery.Models.Category> Category { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<FoodType> FoodType {get; set;}
     }
 }
