@@ -8,6 +8,7 @@ namespace FoodDelivery.Models {
     public class Category {
         
         [Key]
+        [Display(Name="Id")]
         public int Id { get; set; }
 
         [Required]
