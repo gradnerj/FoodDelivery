@@ -17,6 +17,16 @@ namespace FoodDelivery.DataAccess.Data.Repository {
 
         public void Update(MenuItem menuItem) {
             var menuItemObj = _context.MenuItem.FirstOrDefault(m => m.Id == menuItem.Id);
+            menuItemObj.Name = menuItem.Name;
+            menuItemObj.CategoryId = menuItem.CategoryId;
+            menuItemObj.Description = menuItem.Description;
+            menuItemObj.FoodTypeId = menuItem.FoodTypeId;
+            menuItemObj.Price = menuItem.Price;
+
+            if(menuItem.Image != null) {
+                menuItemObj.Image = menuItem.Image;
+            }
+            _context.SaveChanges();
         }
 
     }
