@@ -1,13 +1,10 @@
 ﻿using FoodDelivery.Data;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-
-namespace FoodDelivery.DataAccess.Data.Repository
-{
-    public class FoodTypeRepository : Repository<FoodDelivery.Models.FoodType>, IFoodTypeRepository
+using System.Web.Mvc;
+namespace FoodDelivery.DataAccess.Data.Repository {
+    public class FoodTypeRepository : Repository<Models.FoodType>, IFoodTypeRepository
     {
 
         private readonly ApplicationDbContext _context;
