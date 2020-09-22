@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using FoodDelivery.Models;
-using Microsoft.AspNetCore.Http;
+using FoodDelivery.Models.Models;
 
-namespace FoodDelivery.Data
-{
+namespace FoodDelivery.Data {
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -17,5 +12,6 @@ namespace FoodDelivery.Data
 
         public DbSet<Category> Category { get; set; }
         public DbSet<FoodType> FoodType {get; set;}
+        public DbSet<MenuItem> MenuItem { get; set; }
     }
 }
