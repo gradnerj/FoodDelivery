@@ -104,3 +104,22 @@
 
     </div>
 </form>
+
+@section Scripts{ 
+<script>
+
+    tinymce.init({
+        selector: 'textarea',
+        plugins: "lists",
+        menubar: 'file edit format'
+    });
+
+    function ValidateInput() {
+        if (document.getElementById("uploadImgBox").value == "") {
+            swal('Error', 'Please Select an Image', 'error')
+            return false;
+        }
+        return true;
+    }
+</script>
+}
