@@ -1,8 +1,8 @@
 ﻿using FoodDelivery.Data;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 namespace FoodDelivery.DataAccess.Data.Repository {
     public class FoodTypeRepository : Repository<Models.FoodType>, IFoodTypeRepository
     {
