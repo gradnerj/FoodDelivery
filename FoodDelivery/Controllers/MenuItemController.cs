@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
 using Microsoft.AspNetCore.Hosting;
@@ -32,16 +31,20 @@ namespace FoodDelivery.Controllers {
                 if (objFromDb == null) {
                     return Json(new { success = false, message = "Error while deleting" });
                 }
-                var imgPath = Path.Combine(_hostingEnv.WebRootPath, objFromDb.Image.TrimStart('\\'));
-                if (System.IO.File.Exists(imgPath)) {
-                    System.IO.File.Delete(imgPath);
+                // Had to add this additional control block to check if menu item has an image path in the database
+                if (objFromDb.Image != null) {
+                    var imgPath = Path.Combine(_hostingEnv.WebRootPath, objFromDb.Image.TrimStart('\\'));
+                    if (System.IO.File.Exists(imgPath)) {
+                        System.IO.File.Delete(imgPath);
+                    }
                 }
                 _unitOfWork.MenuItem.Remove(objFromDb);
                 _unitOfWork.Save();
                 
             }
             catch(Exception e) {
-                return Json(new { success = false, message = "Error while deleting" });
+                throw e;
+                //return Json(new { success = false, message = "Error while deleting" });
             }
             return Json(new { success = true, message = "Delete Successful" });
         }
