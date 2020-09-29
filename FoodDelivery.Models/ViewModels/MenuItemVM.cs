@@ -1,4 +1,4 @@
-﻿using FoodDelivery.Models.Models;
+﻿using FoodDelivery.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 

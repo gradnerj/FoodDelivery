@@ -1,7 +1,7 @@
 ﻿using FoodDelivery.Data;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
 using FoodDelivery.DataAccess.IRepository;
-using FoodDelivery.Models.Models;
+using FoodDelivery.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

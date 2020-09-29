@@ -24,7 +24,7 @@ namespace FoodDelivery.Pages.Admin.MenuItem {
         // IActionResult lets you return many many things
         public IActionResult OnGet(int? id) {
             MenuItemObj = new MenuItemVM {
-                MenuItem = new Models.Models.MenuItem(),
+                MenuItem = new Models.MenuItem(),
                 CategoryList = _unitOfWork.Category.GetCategoryListForDropDown(),
                 FoodTypeList = _unitOfWork.FoodType.GetFoodTypeListForDropDown()
             };

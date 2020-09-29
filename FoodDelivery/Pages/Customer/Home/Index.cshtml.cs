@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
 using FoodDelivery.Models;
-using FoodDelivery.Models.Models;
+using FoodDelivery.Models;
 
 namespace FoodDelivery.Pages.Customer.Home {
     public class IndexModel : PageModel { 
