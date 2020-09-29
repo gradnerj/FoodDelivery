@@ -6,7 +6,7 @@ using FoodDelivery.Data;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SQLitePCL;
+
 
 namespace FoodDelivery.Pages.Admin.Category {
 
