@@ -51,6 +51,7 @@ namespace FoodDelivery {
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthorization();
             app.UseMvc();
             //app.UseEndpoints(endpoints =>
             //{
