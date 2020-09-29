@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using FoodDelivery.Data;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
 using FoodDelivery.DataAccess.Data.Repository;
+using Microsoft.AspNetCore.Identity;
 
 namespace FoodDelivery {
     public class Startup {
@@ -27,6 +28,10 @@ namespace FoodDelivery {
                 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
