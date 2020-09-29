@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using FoodDelivery.Models;
-using FoodDelivery.Models.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FoodDelivery.Data {
-    public class ApplicationDbContext : DbContext
-    {
+    public class ApplicationDbContext : IdentityDbContext {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -13,5 +12,6 @@ namespace FoodDelivery.Data {
         public DbSet<Category> Category { get; set; }
         public DbSet<FoodType> FoodType {get; set;}
         public DbSet<MenuItem> MenuItem { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }
