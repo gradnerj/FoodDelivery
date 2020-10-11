@@ -35,7 +35,10 @@ namespace FoodDelivery {
                 options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext"),
                 sqlServerOptions => sqlServerOptions.MigrationsAssembly("FoodDelivery.DataAccess")
                 ));
-                
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.Configure<IdentityOptions>(options => {
@@ -65,9 +68,7 @@ namespace FoodDelivery {
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddDefaultTokenProviders()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            
 
         }
 
