@@ -7,6 +7,7 @@ namespace FoodDelivery.DataAccess.Data.Repository.IRepository {
 
         IMenuItemRepository MenuItem { get; }
         IApplicationUserRepository ApplicationUser { get; }
+        IShoppingCartRepository ShoppingCart { get; }
         void Save();
 
     }
