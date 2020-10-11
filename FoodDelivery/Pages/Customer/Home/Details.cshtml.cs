@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FoodDelivery.Pages.Customer.Home
 {
-    [Authorize]
     public class DetailsModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;
