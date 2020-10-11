@@ -14,13 +14,14 @@ namespace FoodDelivery.DataAccess.Data.Repository {
 
         public IMenuItemRepository MenuItem { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
-
+        public IShoppingCartRepository ShoppingCart { get; private set; }
         public UnitOfWork(ApplicationDbContext context) {
             _context = context;
             Category = new CategoryRepository(_context);
             FoodType = new FoodTypeRepository(_context);
             MenuItem = new MenuItemRepository(_context);
             ApplicationUser = new ApplicationUserRepository(_context);
+            ShoppingCart = new ShoppingCartRepository(_context);
         }
 
         public void Dispose() {
