@@ -15,6 +15,8 @@ namespace FoodDelivery.DataAccess.Data.Repository {
         public IMenuItemRepository MenuItem { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
+        public IOrderDetailsRepository OrderDetails { get; private set; }
+        public IOrderHeaderRepository OrderHeader { get; private set; }
         public UnitOfWork(ApplicationDbContext context) {
             _context = context;
             Category = new CategoryRepository(_context);
@@ -22,6 +24,8 @@ namespace FoodDelivery.DataAccess.Data.Repository {
             MenuItem = new MenuItemRepository(_context);
             ApplicationUser = new ApplicationUserRepository(_context);
             ShoppingCart = new ShoppingCartRepository(_context);
+            OrderDetails = new OrderDetailsRepostiory(_context);
+            OrderHeader = new OrderHeaderRepository(_context);
         }
 
         public void Dispose() {
