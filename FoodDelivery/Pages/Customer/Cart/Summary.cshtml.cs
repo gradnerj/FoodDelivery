@@ -45,7 +45,7 @@ namespace FoodDelivery.Pages.Customer.Cart
                     cartList.MenuItem = _unitOfWork.MenuItem.GetFirstorDefault(n => n.Id == cartList.MenuItemId);
                     OrderDetailsCart.OrderHeader.OrderTotal += (cartList.MenuItem.Price * cartList.Count);
                 }
-                OrderDetailsCart.OrderHeader.OrderTotal += OrderDetailsCart.OrderHeader.OrderTotal + SD.SalesTaxPercent;
+                OrderDetailsCart.OrderHeader.OrderTotal += OrderDetailsCart.OrderHeader.OrderTotal * SD.SalesTaxPercent;
                 ApplicationUser applicationUser = _unitOfWork.ApplicationUser.GetFirstorDefault(c => c.Id == claim.Value);
                 OrderDetailsCart.OrderHeader.DeliveryName = applicationUser.FullName;
                 OrderDetailsCart.OrderHeader.PhoneNumber = applicationUser.PhoneNumber;
@@ -89,7 +89,7 @@ namespace FoodDelivery.Pages.Customer.Cart
 
             if(stripeToken != null) {
                 var options = new ChargeCreateOptions {
-                    Amount = Convert.ToInt32(OrderDetailsCart.OrderHeader.OrderTotal * 100 * SD.SalesTaxPercent),
+                    Amount = Convert.ToInt32(OrderDetailsCart.OrderHeader.OrderTotal * 100),
                     Currency = "usd",
                     Description = "Order ID: " + OrderDetailsCart.OrderHeader.Id,
                     Source = stripeToken
