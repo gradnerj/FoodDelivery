@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.Models", "Food
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.Utility", "FoodDelivery.Utility\FoodDelivery.Utility.csproj", "{25CB7D85-3FC0-4355-841F-2C212721A246}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{25CB7D85-3FC0-4355-841F-2C212721A246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25CB7D85-3FC0-4355-841F-2C212721A246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25CB7D85-3FC0-4355-841F-2C212721A246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
