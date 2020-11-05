@@ -13,4 +13,10 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\FoodDelivery.DataAccess.csproj" />
+    <ProjectReference Include="..\FoodDelivery.Models\FoodDelivery.Models.csproj" />
+    <ProjectReference Include="..\FoodDelivery\FoodDelivery.csproj" />
+  </ItemGroup>
+
 </Project>
