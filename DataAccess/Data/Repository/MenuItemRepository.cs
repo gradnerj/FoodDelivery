@@ -1,11 +1,7 @@
 ﻿using FoodDelivery.Data;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using FoodDelivery.DataAccess.IRepository;
 using FoodDelivery.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace FoodDelivery.DataAccess.Data.Repository {
     public class MenuItemRepository : Repository<MenuItem>, IMenuItemRepository {
@@ -16,7 +12,7 @@ namespace FoodDelivery.DataAccess.Data.Repository {
 
 
         public void Update(MenuItem menuItem) {
-            var menuItemObj = _context.MenuItem.FirstOrDefault(m => m.Id == menuItem.Id);
+            var menuItemObj =  _context.MenuItem.FirstOrDefault(m => m.Id == menuItem.Id);
             menuItemObj.Name = menuItem.Name;
             menuItemObj.CategoryId = menuItem.CategoryId;
             menuItemObj.Description = menuItem.Description;

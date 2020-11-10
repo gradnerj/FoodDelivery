@@ -1,9 +1,5 @@
-﻿ using FoodDelivery.Data;
+﻿using FoodDelivery.Data;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using FoodDelivery.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FoodDelivery.DataAccess.Data.Repository {
     public class UnitOfWork : IUnitOfWork {
@@ -17,6 +13,7 @@ namespace FoodDelivery.DataAccess.Data.Repository {
         public IShoppingCartRepository ShoppingCart { get; private set; }
         public IOrderDetailsRepository OrderDetails { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
+
         public UnitOfWork(ApplicationDbContext context) {
             _context = context;
             Category = new CategoryRepository(_context);
