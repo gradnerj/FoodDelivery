@@ -44,7 +44,9 @@ namespace FoodDelivery.Pages.Admin.FoodType {
             if (FoodTypeObj.Id == 0)
             {
                 //_unitOfWork.FoodType.Add(FoodTypeObj);
-                _context.FoodType.Add(FoodTypeObj);
+                if (_context.FoodType.Any(f => f.Name == FoodTypeObj.Name)) {
+                    _context.FoodType.Add(FoodTypeObj);
+                }
             }
             else
             {

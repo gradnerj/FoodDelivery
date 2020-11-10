@@ -36,6 +36,7 @@ namespace UnitTests {
         }
         [TestMethod]
         public void UserCreationTest() {
+            CleanUpList = new List<string>();
             var TestUser = new ApplicationUser() {
                 Email = "Testy@testy.com",
                 FirstName = "Testy",

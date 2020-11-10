@@ -49,20 +49,26 @@ namespace UnitTests {
             FoodType f1 = new FoodType() {
                 Name = "TypeTest"
             };
-            CleanUpList.Add("TypeTest");
-            _context.FoodType.Add(f1);
-            _context.SaveChanges();
+
+            if(!_context.FoodType.Any(f => f.Name == f1.Name)) {
+                CleanUpList.Add("TypeTest");
+                _context.FoodType.Add(f1);
+                _context.SaveChanges();
+            }
+
+            
 
             FoodType f2 = new FoodType() {
                 Name = "TypeTest"
             };
-
-            CleanUpList.Add("TypeTest");
-            _context.FoodType.Add(f2);
-            _context.SaveChanges();
-
+            if (!_context.FoodType.Any(f => f.Name == f2.Name)) {
+                CleanUpList.Add("TypeTest");
+                _context.FoodType.Add(f2);
+                _context.SaveChanges();
+                Assert.Fail("Duplicate Food Types should not be entered");
+            }
             CleanUp();
-            Assert.Fail("An exception should have thrown for adding a Food Type that already exists.");
+            
         }
     }
 }

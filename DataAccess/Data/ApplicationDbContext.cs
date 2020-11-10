@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using FoodDelivery.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace FoodDelivery.Data {
     public class ApplicationDbContext : IdentityDbContext {
@@ -16,5 +17,6 @@ namespace FoodDelivery.Data {
         public DbSet<ShoppingCart> ShoppingCart { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<OrderHeader> OrderHeader { get; set; }
+
     }
 }
