@@ -43,6 +43,7 @@ namespace FoodDelivery {
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.AddScoped<>
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.Configure<IdentityOptions>(options => {
                 // Password settings.

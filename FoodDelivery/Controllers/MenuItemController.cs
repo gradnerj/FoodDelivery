@@ -1,33 +1,40 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using FoodDelivery.Data;
 using FoodDelivery.DataAccess.Data.Repository.IRepository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.Controllers {
     [Route("api/[controller]")]
     [ApiController]
     public class MenuItemController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+       // private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostingEnv;
-        public MenuItemController(IUnitOfWork unitOfWork, IWebHostEnvironment hostingEnv)
+        private readonly ApplicationDbContext _context;
+        public MenuItemController(IUnitOfWork unitOfWork, IWebHostEnvironment hostingEnv, ApplicationDbContext context)
         {
-            _unitOfWork = unitOfWork;
+            //_unitOfWork = unitOfWork;
             _hostingEnv = hostingEnv;
+            _context = context;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(new { data = _unitOfWork.MenuItem.GetAll(null, null, "Category,FoodType") });
+            //return Json(new { data = _unitOfWork.MenuItem.GetAll(null, null, "Category,FoodType") });
+            return Json(new { data = _context.MenuItem.Include(m => m.Category).Include(c => c.FoodType).AsEnumerable() });
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             try {
-                var objFromDb = _unitOfWork.MenuItem.GetFirstorDefault(u => u.Id == id);
+                // var objFromDb = _unitOfWork.MenuItem.GetFirstorDefault(u => u.Id == id);
+                var objFromDb = _context.MenuItem.FirstOrDefault(u => u.Id == id);
                 if (objFromDb == null) {
                     return Json(new { success = false, message = "Error while deleting" });
                 }
@@ -38,8 +45,10 @@ namespace FoodDelivery.Controllers {
                         System.IO.File.Delete(imgPath);
                     }
                 }
-                _unitOfWork.MenuItem.Remove(objFromDb);
-                _unitOfWork.Save();
+                // _unitOfWork.MenuItem.Remove(objFromDb);
+                _context.MenuItem.Remove(objFromDb);
+                // _unitOfWork.Save();
+                _context.SaveChanges();
                 
             }
             catch(Exception e) {

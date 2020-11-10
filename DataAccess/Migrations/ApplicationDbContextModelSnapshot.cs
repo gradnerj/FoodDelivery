@@ -400,6 +400,16 @@ namespace FoodDelivery.DataAccess.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
+            modelBuilder.Entity("FoodDelivery.Models.UserType", b =>
+                {
+                    b.HasBaseType("FoodDelivery.Models.ApplicationUser");
+
+                    b.Property<string>("FieldThing")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("UserType");
+                });
+
             modelBuilder.Entity("FoodDelivery.Models.MenuItem", b =>
                 {
                     b.HasOne("FoodDelivery.Models.Category", "Category")

@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
+using FoodDelivery.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace FoodDelivery.Areas.Identity.Pages.Account
 {
@@ -20,14 +23,16 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-
+        private readonly ApplicationDbContext _context;
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
         }
 
         [BindProperty]
@@ -82,6 +87,11 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var signedInUser = await _userManager.FindByEmailAsync(Input.Email);
+                    if(_context.ShoppingCart.Any(c => c.ApplicationUserId == signedInUser.Id)) {
+                        var cnt = _context.ShoppingCart.Where(c => c.ApplicationUserId == signedInUser.Id).ToList().Count;
+                        HttpContext.Session.SetInt32(SD.ShoppingCart, cnt);
+                    }
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
