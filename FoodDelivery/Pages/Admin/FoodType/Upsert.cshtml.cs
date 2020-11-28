@@ -8,7 +8,6 @@ namespace FoodDelivery.Pages.Admin.FoodType {
     public class UpsertModel : PageModel
     {
 
-        //private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationDbContext _context;
 
         [BindProperty]
@@ -16,7 +15,6 @@ namespace FoodDelivery.Pages.Admin.FoodType {
 
         public UpsertModel(IUnitOfWork unitOfWork, ApplicationDbContext context)
         {
-           // _unitOfWork = unitOfWork;
             _context = context;
         }
 
@@ -25,7 +23,6 @@ namespace FoodDelivery.Pages.Admin.FoodType {
             FoodTypeObj = new Models.FoodType();
             if (id != null)
             {
-                //FoodTypeObj = _unitOfWork.FoodType.GetFirstorDefault(u => u.Id == id);
                 FoodTypeObj = _context.FoodType.Where(u => u.Id == id).FirstOrDefault();
                 if (FoodTypeObj == null)
                 {
@@ -43,7 +40,6 @@ namespace FoodDelivery.Pages.Admin.FoodType {
             }
             if (FoodTypeObj.Id == 0)
             {
-                //_unitOfWork.FoodType.Add(FoodTypeObj);
                 if (_context.FoodType.Any(f => f.Name == FoodTypeObj.Name)) {
                     _context.FoodType.Add(FoodTypeObj);
                 }
@@ -51,10 +47,8 @@ namespace FoodDelivery.Pages.Admin.FoodType {
             else
             {
                 // Update Category object
-                //_unitOfWork.FoodType.Update(FoodTypeObj);
                 _context.FoodType.Update(FoodTypeObj);
             }
-            // _unitOfWork.Save();
             _context.SaveChanges();
             return RedirectToPage("./Index");
         }
