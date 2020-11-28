@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Security.Claims;
-using DataAccess.Data;
+using Infrastructure.Data;
 using ApplicationCore.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

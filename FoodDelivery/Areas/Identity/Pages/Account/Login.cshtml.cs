@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
-using DataAccess.Data;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 
 namespace FoodDelivery.Areas.Identity.Pages.Account

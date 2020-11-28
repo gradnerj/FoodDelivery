@@ -1,4 +1,4 @@
-using DataAccess.Data;
+using Infrastructure.Data;
 using FoodDelivery.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

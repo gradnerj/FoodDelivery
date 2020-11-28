@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using DataAccess.Data;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDelivery.Controllers {

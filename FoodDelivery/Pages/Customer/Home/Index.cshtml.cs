@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ApplicationCore.Models;
-using DataAccess.Data;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.Pages.Customer.Home {
