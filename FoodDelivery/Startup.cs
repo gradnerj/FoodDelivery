@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Infrastructure.Services;
 using System;
 using Stripe;
+using ApplicationCore.Interfaces;
 
 namespace FoodDelivery {
     public class Startup {
@@ -40,7 +41,7 @@ namespace FoodDelivery {
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //services.AddScoped<>
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.Configure<IdentityOptions>(options => {
                 // Password settings.

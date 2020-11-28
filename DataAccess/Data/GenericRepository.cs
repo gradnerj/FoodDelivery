@@ -15,11 +15,17 @@ namespace Infrastructure.Data {
             return _context.Set<T>().Find(id);
         }
 
-        public virtual IEnumerable<T> List() {
-            return _context.Set<T>().AsEnumerable();
+        public virtual T Get(Expression<Func<T, bool>> predicate) {
+            return _context.Set<T>()
+                .Where(predicate)
+                .FirstOrDefault();
         }
 
-        public virtual IEnumerable<T> List(System.Linq.Expressions.Expression<Func<T, bool>> predicate) {
+        public virtual IEnumerable<T> List() {
+            return _context.Set<T>().ToList().AsEnumerable();
+        }
+
+        public virtual IEnumerable<T> List(Expression<Func<T, bool>> predicate) {
             return _context.Set<T>()
                    .Where(predicate)
                    .AsEnumerable();
