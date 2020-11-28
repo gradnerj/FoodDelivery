@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Infrastructure;
+using Infrastructure.Services;
 using System;
 using Stripe;
 
