@@ -1,8 +1,7 @@
-﻿using System;
+﻿using ApplicationCore.Models;
 using System.Collections.Generic;
-using System.Text;
 
-namespace FoodDelivery.Models.ViewModels {
+namespace FoodDelivery.ViewModels {
     public class OrderDetailsCartVM {
         public OrderHeader OrderHeader { get; set; }
         public List<ShoppingCart> ListCart { get; set; }

@@ -2,19 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FoodDelivery.Data;
-using FoodDelivery.Models;
+using DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using ApplicationCore.Models;
 
-namespace FoodDelivery.Pages.Admin.User
-{
+namespace FoodDelivery.Pages.Admin.User {
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;
-        private UserManager<IdentityUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
         public IndexModel(ApplicationDbContext context, UserManager<IdentityUser> userManager) {
             _context = context;
             _userManager = userManager;

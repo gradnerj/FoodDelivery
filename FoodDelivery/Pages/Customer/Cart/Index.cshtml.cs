@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using FoodDelivery.Models;
-using FoodDelivery.Models.ViewModels;
+using ApplicationCore.Models;
+using FoodDelivery.ViewModels;
 using System.Security.Claims;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using FoodDelivery.Data;
-using FoodDelivery.DataAccess.Data.Repository;
+using DataAccess.Data;
+
 
 namespace FoodDelivery.Pages.Customer.Cart {
     public class IndexModel : PageModel {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         public IndexModel(ApplicationDbContext context) {
             _context = context;
         }

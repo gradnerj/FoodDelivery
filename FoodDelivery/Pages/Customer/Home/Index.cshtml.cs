@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using FoodDelivery.Models;
-using FoodDelivery.Data;
+using ApplicationCore.Models;
+using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.Pages.Customer.Home {

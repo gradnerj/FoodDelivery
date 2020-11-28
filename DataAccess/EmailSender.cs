@@ -1,4 +1,4 @@
-﻿using FoodDelivery.Utility;
+﻿using Infrastructure;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 using SendGrid.Helpers.Mail;

@@ -1,20 +1,15 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FoodDelivery.Data;
+using DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FoodDelivery.Pages.Admin.Roles
-{
+namespace FoodDelivery.Pages.Admin.Roles {
     public class RolesModel : PageModel {
-        private ApplicationDbContext _context;
-        private RoleManager<IdentityRole> _roleManager;
-        public RolesModel(ApplicationDbContext context, RoleManager<IdentityRole> roleManager) {
-            _context = context;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public RolesModel(RoleManager<IdentityRole> roleManager) {
             _roleManager = roleManager;
         }
         public List<string> Roles { get; set; }
@@ -29,8 +24,9 @@ namespace FoodDelivery.Pages.Admin.Roles
 
         }
         public async Task<IActionResult> OnPostAsync() {
-            var newRole = new IdentityRole();
-            newRole.Name = RoleName;
+            var newRole = new IdentityRole {
+                Name = RoleName
+            };
             await _roleManager.CreateAsync(newRole);
             return RedirectToPage();
         }

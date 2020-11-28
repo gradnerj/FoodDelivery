@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
-using FoodDelivery.Data;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
+using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDelivery.Controllers {
@@ -11,7 +10,7 @@ namespace FoodDelivery.Controllers {
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public UserController(IUnitOfWork unitOfWork, ApplicationDbContext context)
+        public UserController(ApplicationDbContext context)
         {
             _context = context;
         }

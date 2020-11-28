@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using FoodDelivery.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+using ApplicationCore.Models;
 
-namespace FoodDelivery.Data {
+namespace DataAccess.Data {
     public class ApplicationDbContext : IdentityDbContext {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using FoodDelivery.Data;
+using DataAccess.Data;
 
 namespace FoodDelivery.Pages.Admin {
     public class CategoryIndexModel : PageModel

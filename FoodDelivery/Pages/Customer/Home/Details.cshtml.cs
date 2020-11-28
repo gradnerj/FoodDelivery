@@ -1,8 +1,7 @@
 using System.Linq;
 using System.Security.Claims;
-using FoodDelivery.Data;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using FoodDelivery.Models;
+using DataAccess.Data;
+using ApplicationCore.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

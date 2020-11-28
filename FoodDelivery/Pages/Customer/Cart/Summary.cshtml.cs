@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using FoodDelivery.Data;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using FoodDelivery.Models;
-using FoodDelivery.Models.ViewModels;
-using FoodDelivery.Utility;
+using DataAccess.Data;
+using ApplicationCore.Models;
+using FoodDelivery.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Stripe;
 
-namespace FoodDelivery.Pages.Customer.Cart
-{
+namespace FoodDelivery.Pages.Customer.Cart {
     public class SummaryModel : PageModel
     {
         private readonly ApplicationDbContext _context;

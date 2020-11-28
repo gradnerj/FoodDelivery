@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace FoodDelivery.Models
-{
+namespace ApplicationCore.Models {
    public class OrderDetails
     {
         public int Id { get; set; }

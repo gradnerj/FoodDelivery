@@ -15,6 +15,4 @@ public class SD {
     public const string StatusDelivered = "Order Delivered";
     public const string StatusCancelled = "Order Cancelled";
     public const string StatusRefunded = "Order Refunded";
-
-
 }

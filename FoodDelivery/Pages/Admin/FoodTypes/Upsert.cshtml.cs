@@ -1,26 +1,25 @@
-using FoodDelivery.Data;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
+using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
-
-namespace FoodDelivery.Pages.Admin.FoodType {
+using ApplicationCore.Models;
+namespace FoodDelivery.Pages.Admin.FoodTypes {
     public class UpsertModel : PageModel
     {
 
         private readonly ApplicationDbContext _context;
 
         [BindProperty]
-        public Models.FoodType FoodTypeObj { get; set; }
+        public FoodType FoodTypeObj { get; set; }
 
-        public UpsertModel(IUnitOfWork unitOfWork, ApplicationDbContext context)
+        public UpsertModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet(int? id)
         {
-            FoodTypeObj = new Models.FoodType();
+            FoodTypeObj = new FoodType();
             if (id != null)
             {
                 FoodTypeObj = _context.FoodType.Where(u => u.Id == id).FirstOrDefault();

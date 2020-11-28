@@ -1,5 +1,4 @@
-﻿using FoodDelivery.Data;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
+﻿using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 

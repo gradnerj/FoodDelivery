@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 //!  An ApplicationUser class. Inherits from IdentityUser 
-namespace FoodDelivery.Models {
+namespace ApplicationCore.Models {
     public class ApplicationUser : IdentityUser {
         //! FirstName
         public string FirstName { get; set; }

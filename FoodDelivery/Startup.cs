@@ -4,12 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using FoodDelivery.Data;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using FoodDelivery.DataAccess.Data.Repository;
+using DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using FoodDelivery.Utility;
+using Infrastructure;
 using System;
 using Stripe;
 
@@ -42,7 +40,6 @@ namespace FoodDelivery {
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
             //services.AddScoped<>
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.Configure<IdentityOptions>(options => {

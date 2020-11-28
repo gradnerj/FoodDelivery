@@ -1,7 +1,5 @@
-﻿using FoodDelivery.Data;
-using FoodDelivery.DataAccess.Data.Repository;
-using FoodDelivery.DataAccess.Data.Repository.IRepository;
-using FoodDelivery.Models;
+﻿using DataAccess.Data;
+using ApplicationCore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,10 +10,9 @@ namespace UnitTests {
     [TestClass]
     public class MenuItemTests {
 
-        private IConfigurationRoot _configuration;
-        private DbContextOptions<ApplicationDbContext> _options;
-        //private readonly IUnitOfWork _unitOfWork;
-        private ApplicationDbContext _context;
+        private readonly IConfigurationRoot _configuration;
+        private readonly DbContextOptions<ApplicationDbContext> _options;
+        private readonly ApplicationDbContext _context;
 
         public List<string> CleanUpList { get; set; }
 
@@ -24,7 +21,6 @@ namespace UnitTests {
             _configuration = builder.Build();
             _options = new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlServer(_configuration.GetConnectionString("ApplicationDbContext")).Options;
             _context = new ApplicationDbContext(_options);
-           // _unitOfWork = new UnitOfWork(_context);
         }
          public void CleanUp() {
             var objToRemove = _context.MenuItem.Where(m => m.Name == CleanUpList[0]);

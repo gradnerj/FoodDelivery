@@ -1,9 +1,9 @@
-﻿using FoodDelivery.Models;
+﻿using ApplicationCore.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
 
-namespace FoodDelivery.Models.ViewModels {
+namespace FoodDelivery.ViewModels {
     public class MenuItemVM {
         public MenuItem MenuItem { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
