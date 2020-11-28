@@ -7,13 +7,14 @@ using FoodDelivery.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.Pages.Customer.Home {
-    public class IndexModel : PageModel { 
-        //private readonly IUnitOfWork _unitOfWork;
+    public class IndexModel : PageModel {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationDbContext _context;
-        public IndexModel(IUnitOfWork unitOfWork, ApplicationDbContext context) { 
+        public IndexModel(IUnitOfWork unitOfWork, ApplicationDbContext context) {
             //_unitOfWork = unitOfWork;
             _context = context;
-        } 
+        }
+
         public IEnumerable<MenuItem> MenuItemList { get; set; } 
         public IEnumerable<Category> CategoryList { get; set; } 
         public void OnGet() {

@@ -1,0 +1,116 @@
+﻿@page
+@model FoodDelivery.Pages.Admin.Roles.RolesModel
+<div class="container">
+    <div class="row">
+        <a data-toggle="modal" href="#createNewRole">Create New</a>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var r in Model.Roles) {
+                        <tr>
+                            <td>@r</td>
+                            <td><a onclick="GetOldName('@r')" data-toggle="modal" href="#updateRoleModal">Update</a><a onclick="DeleteRoleName('@r') "data-toggle="modal" href="#deleteRoleModal">Delete</a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="createNewRole" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="post">
+                    <div class="form-group">
+                        <label class="form-label" for="@Model.RoleName">Role Name</label>
+                        <input class="form-input" for="@Model.RoleName" type="text" name="roleName" />
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save New Role</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateRoleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newNameLabel">Update Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="post">
+                    <input type="hidden" id="oldName" asp-for="@Model.RoleName"/>
+                    <div class="form-group">
+                        <label class="form-label"  for="@Model.NewRole">New Role Name</label>
+                        <input class="form-input" id="updateRoleName" asp-for="@Model.NewRole" />
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" asp-page-handler="Update" class="btn btn-primary">Update Role</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteRoleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteTitle">Delete Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="post">
+                    <input type="hidden" id="deleteName" asp-for="@Model.RoleName" />
+                    <div class="form-group">
+                        <label class="form-label" id="deleteLabel" for="@Model.RoleName">Are you sure you want to delete: </label>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" asp-page-handler="Delete" class="btn btn-primary">Delete Role</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function GetOldName(name){
+            $('#oldName').prop("value", name);
+            $('#newNameLabel').prop("innerHTML", "Update Role: " + name);
+        }
+        function DeleteRoleName(name) {
+            $('#deleteName').prop("value", name);
+            $('#deleteLabel').prop("innerHTML", "Are you sure you want to delete: " + name + '?');
+        }
+    </script>
+}

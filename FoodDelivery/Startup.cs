@@ -72,8 +72,8 @@ namespace FoodDelivery {
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
-            
 
+ 
 
         }
 

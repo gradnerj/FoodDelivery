@@ -8,16 +8,16 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using FoodDelivery.Data;
+using FoodDelivery.DataAccess.Data.Repository;
 
 namespace FoodDelivery.Pages.Customer.Cart {
     public class IndexModel : PageModel {
-       // private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private ApplicationDbContext _context;
         public IndexModel(IUnitOfWork unitOfWork, ApplicationDbContext context) {
-           // _unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
             _context = context;
         }
-
         public OrderDetailsCartVM OrderDetailsCart { get; set; }
 
         public void OnGet() {
@@ -45,16 +45,16 @@ namespace FoodDelivery.Pages.Customer.Cart {
         }
 
         public IActionResult OnPostMinus(int cartId) {
-            // var cart = _unitOfWork.ShoppingCart.GetFirstorDefault(c => c.Id == cartId);
-            var cart = _context.ShoppingCart.FirstOrDefault(c => c.Id == cartId);
+            var cart = _unitOfWork.ShoppingCart.GetFirstorDefault(c => c.Id == cartId);
+            //var cart = _context.ShoppingCart.FirstOrDefault(c => c.Id == cartId);
             if (cart.Count == 1) {
-                //_unitOfWork.ShoppingCart.Remove(cart);
-                _context.ShoppingCart.Remove(cart);
+                _unitOfWork.ShoppingCart.Remove(cart);
+               // _context.ShoppingCart.Remove(cart);
 
             } else {
-                //_unitOfWork.ShoppingCart.DecrementCount(cart, 1);
+               // _unitOfWork.ShoppingCart.DecrementCount(cart, 1);
                 cart.Count -= 1;
-                _context.ShoppingCart.Update(cart);
+                //_context.ShoppingCart.Update(cart);
             }
             // _unitOfWork.Save();
             _context.SaveChanges();
