@@ -12,9 +12,9 @@ function loadList() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "fullName", "width": "25%" },
-            { "data": "email", "width": "25%" },
-            { "data": "phoneNumber", "width": "25%" },
+            { "data": "fullName", "width": "20%" },
+            { "data": "email", "width": "20%" },
+            { "data": "phoneNumber", "width": "20%" },
             {
                 "data": {
                     id: "id", lockoutEnd: "lockoutEnd"

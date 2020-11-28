@@ -16,9 +16,11 @@ namespace FoodDelivery.Controllers {
             _context = context;
         }
 
+
         [HttpGet]
         public IActionResult Get()
         {
+
             return Json(new { data = _context.ApplicationUser.AsEnumerable() });
         }
 
