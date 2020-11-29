@@ -2,9 +2,6 @@
 @model FoodDelivery.Pages.Admin.Roles.RolesModel
 <div class="container">
     <div class="row">
-        <a data-toggle="modal" href="#createNewRole">Create New</a>
-    </div>
-    <div class="row">
         <table class="table">
             <thead>
                 <tr>
@@ -17,7 +14,7 @@
                     foreach (var r in Model.Roles) {
                         <tr>
                             <td>@r</td>
-                            <td><a onclick="GetOldName('@r')" data-toggle="modal" href="#updateRoleModal">Update</a><a onclick="DeleteRoleName('@r') "data-toggle="modal" href="#deleteRoleModal">Delete</a></td>
+                            <td><a class="btn btn-outline-primary" onclick="GetOldName('@r')" data-toggle="modal" href="#updateRoleModal">Update</a><a class="btn btn-outline-primary ml-2" onclick="DeleteRoleName('@r') " data-toggle="modal" href="#deleteRoleModal">Delete</a></td>
                         </tr>
                     }
                 }
@@ -94,7 +91,7 @@
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" asp-page-handler="Delete" class="btn btn-primary">Delete Role</button>
+                        <button type="submit" asp-page-handler="Delete" class="btn btn-danger">Delete Role</button>
                     </div>
                 </form>
             </div>
@@ -112,5 +109,6 @@
             $('#deleteName').prop("value", name);
             $('#deleteLabel').prop("innerHTML", "Are you sure you want to delete: " + name + '?');
         }
+
     </script>
 }

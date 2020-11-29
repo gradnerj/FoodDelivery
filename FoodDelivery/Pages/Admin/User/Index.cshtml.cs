@@ -21,7 +21,12 @@ namespace FoodDelivery.Pages.Admin.User {
         }
         public IEnumerable<ApplicationUser> ApplicationUsers { get; set; }
         public Dictionary<string, List<string>> UserRoles { get; set; }
-        public async Task OnGetAsync() {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+
+        public async Task OnGetAsync(bool success = false, string message = null) {
+            Success = success;
+            Message = message;
             UserRoles = new Dictionary<string, List<string>>();
             ApplicationUsers = _unitOfWork.ApplicationUser.List();
             foreach (var user in ApplicationUsers) {

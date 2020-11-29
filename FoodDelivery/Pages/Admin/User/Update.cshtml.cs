@@ -60,7 +60,7 @@ namespace FoodDelivery.Pages.Admin.User {
                 }
             }
             var result1 = await _userManager.AddToRolesAsync(user, rolesToAdd.AsEnumerable());
-            return RedirectToPage(new { id = AppUser.Id });
+            return RedirectToPage("./Index", new { success = true, message = "Update Successful"  });
         }
     }
 }
