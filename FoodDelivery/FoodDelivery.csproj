@@ -33,4 +33,8 @@
     <Folder Include="wwwroot\images\menuitems\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\loaderio-fe9f2d04028025e84027ec20ba24af3c.txt" />
+  </ItemGroup>
+
 </Project>
