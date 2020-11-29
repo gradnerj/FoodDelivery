@@ -1,8 +1,8 @@
 ﻿@page
 @model FoodDelivery.Pages.Customer.Cart.SummaryModel
-@using Infrastructure
+@using Infrastructure.Services
 @using Microsoft.Extensions.Options
-@inject IOptions<Infrastructure.StripeSettings> Stripe
+@inject IOptions<Infrastructure.Services.StripeSettings> Stripe
 
 @{
     ViewData["Title"] = "Summary";
