@@ -1,11 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using ApplicationCore.Interfaces;
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.Controllers {
     [Route("api/[controller]")]
@@ -29,23 +26,18 @@ namespace FoodDelivery.Controllers {
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            try {
-                var objFromDb = _unitOfWork.MenuItem.Get(m => m.Id == id);
-                if (objFromDb == null) {
-                    return Json(new { success = false, message = "Error while deleting" });
-                }
-                if (objFromDb.Image != null) {
-                    var imgPath = Path.Combine(_hostingEnv.WebRootPath, objFromDb.Image.TrimStart('\\'));
-                    if (System.IO.File.Exists(imgPath)) {
-                        System.IO.File.Delete(imgPath);
-                    }
-                }
-                _unitOfWork.MenuItem.Delete(objFromDb);
-                _unitOfWork.Commit();
+            var objFromDb = _unitOfWork.MenuItem.Get(m => m.Id == id);
+            if (objFromDb == null) {
+                return Json(new { success = false, message = "Error while deleting" });
             }
-            catch(Exception e) {
-                throw e;
+            if (objFromDb.Image != null) {
+                var imgPath = Path.Combine(_hostingEnv.WebRootPath, objFromDb.Image.TrimStart('\\'));
+                if (System.IO.File.Exists(imgPath)) {
+                    System.IO.File.Delete(imgPath);
+                }
             }
+            _unitOfWork.MenuItem.Delete(objFromDb);
+            _unitOfWork.Commit();
             return Json(new { success = true, message = "Delete Successful" });
         }
     }

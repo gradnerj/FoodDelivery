@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Infrastructure.Data;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FoodDelivery.Pages.Admin {
     public class CategoryIndexModel : PageModel
     {
 
-        public void OnGet()
-        {
+        public void OnGet() {
+            // Method intentionally left empty.
         }
     }
 }

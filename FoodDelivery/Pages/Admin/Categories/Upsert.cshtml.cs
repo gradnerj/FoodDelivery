@@ -1,7 +1,5 @@
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Linq;
 using ApplicationCore.Models;
 using ApplicationCore.Interfaces;
 

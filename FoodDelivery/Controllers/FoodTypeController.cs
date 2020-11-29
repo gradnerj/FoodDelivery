@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using ApplicationCore.Interfaces;
-using Infrastructure.Data;
+﻿using ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDelivery.Controllers {
@@ -14,7 +12,6 @@ namespace FoodDelivery.Controllers {
         [HttpGet]
         public IActionResult Get()
         {
-            // return Json(new { data = _context.FoodType.AsEnumerable() });
             return Json(new { data = _unitOfWork.FoodType.List() });
         }
 

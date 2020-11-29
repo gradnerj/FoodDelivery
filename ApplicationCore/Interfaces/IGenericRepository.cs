@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace ApplicationCore.Interfaces {
-public interface IGenericRepository<T> where T : class {
+    public interface IGenericRepository<T> where T : class {
         T GetById(int id);
         T Get(Expression<Func<T, bool>> predicate, bool asNoTracking = false, string includes = null);
         IEnumerable<T> List();
-        IEnumerable<T> List(Expression<Func<T, bool>> predicate = null, Expression<Func< T, int>> orderBy = null,  string includes = null);
+        IEnumerable<T> List(Expression<Func<T, bool>> predicate, Expression<Func< T, int>> orderBy = null,  string includes = null);
         void Add(T entity);
         void Delete(T entity);
         void Delete(IEnumerable<T> entities);

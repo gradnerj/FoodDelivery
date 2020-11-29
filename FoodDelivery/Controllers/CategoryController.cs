@@ -1,7 +1,5 @@
 ﻿using ApplicationCore.Interfaces;
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace FoodDelivery.Controllers {
     [Route("api/[controller]")]
