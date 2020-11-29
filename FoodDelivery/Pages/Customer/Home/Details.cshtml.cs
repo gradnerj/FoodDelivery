@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ApplicationCore.Interfaces;
+using System.Threading.Tasks;
 
 namespace FoodDelivery.Pages.Customer.Home {
     public class DetailsModel : PageModel
@@ -14,10 +15,10 @@ namespace FoodDelivery.Pages.Customer.Home {
         public DetailsModel(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
         [BindProperty]
         public ShoppingCart ShoppingCartObj { get; set; }
-        public void OnGet(int id)
+        public async Task OnGet(int id)
         {
             ShoppingCartObj = new ShoppingCart() {
-                MenuItem = _unitOfWork.MenuItem.Get(m => m.Id == id, false, "Category,FoodType")
+                MenuItem = await _unitOfWork.MenuItem.GetAsync(m => m.Id == id, false, "Category,FoodType")
             };
             ShoppingCartObj.MenuItemId = id;
         }

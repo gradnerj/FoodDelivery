@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using ApplicationCore.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data {
@@ -46,12 +48,42 @@ namespace Infrastructure.Data {
                 }
             }
         }
+        public virtual async Task<T> GetAsync(Expression<Func<T, bool>> predicate = null, bool asNoTracking = false, string includes = null) {
 
+            if (includes == null) {
+                if (asNoTracking) {
+                    return await _context.Set<T>()
+                    .AsNoTracking()
+                    .Where(predicate)
+                    .FirstOrDefaultAsync();
+                } else {
+                    return await _context.Set<T>()
+                        .Where(predicate)
+                        .FirstOrDefaultAsync();
+                }
+            } else {
+                IQueryable<T> queryable = _context.Set<T>();
+                foreach (var includeProperty in includes.Split(new char[]
+                        {','}, StringSplitOptions.RemoveEmptyEntries)) {
+                    queryable = queryable.Include(includeProperty);
+                }
+                if (asNoTracking) {
+                    return await queryable
+                        .AsNoTracking()
+                        .Where(predicate)
+                        .FirstOrDefaultAsync();
+                } else {
+                    return await queryable
+                        .Where(predicate)
+                        .FirstOrDefaultAsync();
+                }
+            }
+        }
         public virtual IEnumerable<T> List() {
             return _context.Set<T>().ToList().AsEnumerable();
         }
 
-        public virtual IEnumerable<T> List(Expression<Func<T, bool>> predicate = null, Expression<Func<T, int>> orderBy = null,string includes = null) {
+        public virtual IEnumerable<T> List(Expression<Func<T, bool>> predicate, Expression<Func<T, int>> orderBy = null,string includes = null) {
             IQueryable<T> queryable = _context.Set<T>();
             if (predicate != null && includes == null) {
                 return _context.Set<T>()
@@ -79,6 +111,35 @@ namespace Infrastructure.Data {
                 }
             }
          }
+
+        public virtual async Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, int>> orderBy = null, string includes = null) {
+            IQueryable<T> queryable = _context.Set<T>();
+            if (predicate != null && includes == null) {
+                return await _context.Set<T>()
+                      .Where(predicate)
+                      .ToListAsync();
+            } else if (includes != null) {
+                foreach (var includeProperty in includes.Split(new char[]
+                        {','}, StringSplitOptions.RemoveEmptyEntries)) {
+                    queryable = queryable.Include(includeProperty);
+                }
+            }
+
+            if (predicate == null) {
+                if (orderBy == null) {
+                    return await queryable.ToListAsync();
+                } else {
+                    return await queryable.OrderBy(orderBy).ToListAsync();
+                }
+            } else {
+                if (orderBy == null) {
+                    return await queryable.Where(predicate).ToListAsync();
+                } else {
+                    return await queryable.Where(predicate).OrderBy(orderBy).ToListAsync();
+                }
+            }
+        }
+
 
         public void Update(T entity) {
             _context.Entry(entity).State = EntityState.Modified;
