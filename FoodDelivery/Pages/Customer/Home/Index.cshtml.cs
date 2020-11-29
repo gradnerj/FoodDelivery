@@ -14,9 +14,9 @@ namespace FoodDelivery.Pages.Customer.Home {
 
         public IEnumerable<MenuItem> MenuItemList { get; set; } 
         public IEnumerable<Category> CategoryList { get; set; } 
-        public async Task OnGetAsync() {
-            MenuItemList = await _unitOfWork.MenuItem.ListAsync(null, null, "Category,FoodType");
-            CategoryList = await _unitOfWork.Category.ListAsync(null, q => q.DisplayOrder, null);
+        public void OnGet() {
+            MenuItemList =  _unitOfWork.MenuItem.List(null, null, "Category,FoodType");
+            CategoryList =  _unitOfWork.Category.List(null, q => q.DisplayOrder, null);
         } 
     } 
 }
