@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery", "FoodDelivery\FoodDelivery.csproj", "{F51F7C8E-A707-4F4E-9229-C6349588B40A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "DataAccess\Infrastructure.csproj", "{4D713088-E7C9-4CB5-8BE4-D37C39AD096A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{4D713088-E7C9-4CB5-8BE4-D37C39AD096A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationCore", "FoodDelivery.Models\ApplicationCore.csproj", "{82A1C783-E52F-4999-9642-0998EB815C0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationCore", "ApplicationCore\ApplicationCore.csproj", "{82A1C783-E52F-4999-9642-0998EB815C0A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}"
 EndProject
