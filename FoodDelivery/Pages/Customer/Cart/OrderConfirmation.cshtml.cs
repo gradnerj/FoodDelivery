@@ -10,11 +10,11 @@ namespace FoodDelivery.Pages.Customer.Cart
     public class OrderConfirmationModel : PageModel
     {
         [BindProperty]
-        public int orderId { get; set; }
+        public int OrderId { get; set; }
 
         public void OnGet(int id)
         {
-            orderId = id;
+            OrderId = id;
         }
     }
 }

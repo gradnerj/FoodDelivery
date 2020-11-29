@@ -25,9 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\FoodDelivery.DataAccess.csproj" />
-    <ProjectReference Include="..\FoodDelivery.Models\FoodDelivery.Models.csproj" />
-    <ProjectReference Include="..\FoodDelivery.Utility\FoodDelivery.Utility.csproj" />
+    <ProjectReference Include="..\DataAccess\Infrastructure.csproj" />
+    <ProjectReference Include="..\FoodDelivery.Models\ApplicationCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,11 +5,9 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery", "FoodDelivery\FoodDelivery.csproj", "{F51F7C8E-A707-4F4E-9229-C6349588B40A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.DataAccess", "DataAccess\FoodDelivery.DataAccess.csproj", "{4D713088-E7C9-4CB5-8BE4-D37C39AD096A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "DataAccess\Infrastructure.csproj", "{4D713088-E7C9-4CB5-8BE4-D37C39AD096A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.Models", "FoodDelivery.Models\FoodDelivery.Models.csproj", "{82A1C783-E52F-4999-9642-0998EB815C0A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDelivery.Utility", "FoodDelivery.Utility\FoodDelivery.Utility.csproj", "{25CB7D85-3FC0-4355-841F-2C212721A246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationCore", "FoodDelivery.Models\ApplicationCore.csproj", "{82A1C783-E52F-4999-9642-0998EB815C0A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{82A1C783-E52F-4999-9642-0998EB815C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82A1C783-E52F-4999-9642-0998EB815C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82A1C783-E52F-4999-9642-0998EB815C0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25CB7D85-3FC0-4355-841F-2C212721A246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25CB7D85-3FC0-4355-841F-2C212721A246}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25CB7D85-3FC0-4355-841F-2C212721A246}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25CB7D85-3FC0-4355-841F-2C212721A246}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE3B65F0-05D0-4CD8-BA6C-80EF9C80DAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU

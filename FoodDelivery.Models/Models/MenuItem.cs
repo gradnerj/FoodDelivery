@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FoodDelivery.Models {
+namespace ApplicationCore.Models {
     public class MenuItem {
         [Key]
         public int Id { get; set; }
