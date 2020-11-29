@@ -6,15 +6,17 @@ using ApplicationCore.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ApplicationCore.Interfaces;
 
 namespace FoodDelivery.Pages.Admin.User {
     public class UpdateModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+
+        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public UpdateModel(ApplicationDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager) {
-            _context = context;
+        public UpdateModel(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager) {
+            _unitOfWork = unitOfWork;
             _userManager = userManager;
             _roleManager = roleManager;
         }
@@ -27,7 +29,7 @@ namespace FoodDelivery.Pages.Admin.User {
         public List<string> OldRoles { get; set; }
         public async Task OnGetAsync(string id)
         {
-            AppUser = _context.ApplicationUser.FirstOrDefault(u => u.Id == id);
+            AppUser = _unitOfWork.ApplicationUser.Get(u => u.Id == id);
             var roles = await _userManager.GetRolesAsync(AppUser);
             UsersRoles = roles.ToList();
             OldRoles = roles.ToList();
@@ -39,13 +41,14 @@ namespace FoodDelivery.Pages.Admin.User {
             var oldRoles = await _userManager.GetRolesAsync(AppUser);
             OldRoles = oldRoles.ToList();
             var rolesToAdd = new List<string>();
-            var user = _context.ApplicationUser.FirstOrDefault(u => u.Id == AppUser.Id);
+            var user = _unitOfWork.ApplicationUser.Get(u => u.Id == AppUser.Id);
             user.FirstName = AppUser.FirstName;
             user.LastName = AppUser.LastName;
             user.Email = AppUser.Email;
             user.PhoneNumber = AppUser.PhoneNumber;
-            _context.ApplicationUser.Update(user);
-            _context.SaveChanges();
+            _unitOfWork.ApplicationUser.Update(user);
+            _unitOfWork.Commit();
+
             foreach(var r in UsersRoles) {
                 if (!OldRoles.Contains(r)) {
                     rolesToAdd.Add(r);

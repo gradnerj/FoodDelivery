@@ -8,31 +8,34 @@ using System;
 using System.IO;
 using System.Linq;
 using ApplicationCore.Models;
+using ApplicationCore.Interfaces;
+
 namespace FoodDelivery.Pages.Admin.MenuItems {
 
     public class UpsertModel : PageModel {
-
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostEnvironment;
 
 
         [BindProperty]
         public MenuItemVM MenuItemObj { get; set; }
 
-        public UpsertModel(Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostEnvironment, ApplicationDbContext context) {
+        public UpsertModel(IUnitOfWork unitOfWork, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostEnvironment) {
             _hostEnvironment = hostEnvironment;
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult OnGet(int? id) {
+            var categories = _unitOfWork.Category.List();
+            var foodTypes = _unitOfWork.FoodType.List();
             MenuItemObj = new MenuItemVM {
                 MenuItem = new MenuItem(),
-                CategoryList = _context.Category.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }),
-                FoodTypeList = _context.FoodType.Select(f => new SelectListItem { Value = f.Id.ToString(), Text = f.Name }),
+                CategoryList = categories.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }),
+                FoodTypeList = foodTypes.Select(f => new SelectListItem { Value = f.Id.ToString(), Text = f.Name }),
             };
 
             if (id != 0) {
-                MenuItemObj.MenuItem = _context.MenuItem.AsNoTracking().Where(u => u.Id == id).FirstOrDefault();
+                MenuItemObj.MenuItem = _unitOfWork.MenuItem.Get(u => u.Id == id, true);
                 if (MenuItemObj == null) {
                     return NotFound();
                 }
@@ -60,10 +63,10 @@ namespace FoodDelivery.Pages.Admin.MenuItems {
                     }
                     MenuItemObj.MenuItem.Image = @"\images\menuitems\" + fileName + extension;
                 }
-                _context.MenuItem.Add(MenuItemObj.MenuItem);
+                _unitOfWork.MenuItem.Add(MenuItemObj.MenuItem);
             } else {
                 // Update MenuItem object
-                var objFromDb = _context.MenuItem.AsNoTracking().Where(m => m.Id == MenuItemObj.MenuItem.Id).FirstOrDefault();
+                var objFromDb = _unitOfWork.MenuItem.Get(m => m.Id == MenuItemObj.MenuItem.Id, true);
                 if(files.Count > 0) {
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(webRootPath, @"images\menuitems\");
@@ -80,10 +83,12 @@ namespace FoodDelivery.Pages.Admin.MenuItems {
                     }
                     MenuItemObj.MenuItem.Image = @"\images\menuitems\" + fileName + extension;
 
+                } else {
+                    MenuItemObj.MenuItem.Image = objFromDb.Image;
                 }
-                _context.MenuItem.Update(MenuItemObj.MenuItem);
+                _unitOfWork.MenuItem.Update(MenuItemObj.MenuItem);
             }
-            _context.SaveChanges();
+            _unitOfWork.Commit();
             return RedirectToPage("./Index");
         }
     }

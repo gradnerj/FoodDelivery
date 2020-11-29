@@ -3,24 +3,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
 using ApplicationCore.Models;
+using ApplicationCore.Interfaces;
+
 namespace FoodDelivery.Pages.Admin.Categories {
 
     public class UpsertModel : PageModel {
 
+        private readonly IUnitOfWork _unitOfWork;
         
-        private readonly ApplicationDbContext _context;
         [BindProperty]
         public Category CategoryObj { get; set; }
-        public UpsertModel(ApplicationDbContext context) {
-            _context = context;
-        }
+        public UpsertModel(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         // IActionResult lets you return many many things
         public IActionResult OnGet(int? id) {
             CategoryObj = new Category();
 
             if (id != 0) {
-                CategoryObj = _context.Category.Where(u => u.Id == id).FirstOrDefault();
+                CategoryObj = _unitOfWork.Category.Get(u => u.Id == id);
                 if (CategoryObj == null) {
                     return NotFound();
                 }
@@ -33,12 +33,12 @@ namespace FoodDelivery.Pages.Admin.Categories {
                 return Page();
             }
             if(CategoryObj.Id == 0) {
-                _context.Category.Add(CategoryObj);
+                _unitOfWork.Category.Add(CategoryObj);
             }
             else {
-                _context.Category.Update(CategoryObj);
+                _unitOfWork.Category.Update(CategoryObj);
             }
-            _context.SaveChanges();
+            _unitOfWork.Commit();
             return RedirectToPage("./Index");
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using ApplicationCore.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,24 +13,24 @@ namespace FoodDelivery.Controllers {
     public class MenuItemController : Controller
     {
         private readonly IWebHostEnvironment _hostingEnv;
-        private readonly ApplicationDbContext _context;
-        public MenuItemController(IWebHostEnvironment hostingEnv, ApplicationDbContext context)
+        private readonly IUnitOfWork _unitOfWork;
+        public MenuItemController(IWebHostEnvironment hostingEnv, IUnitOfWork unitOfWork)
         {
             _hostingEnv = hostingEnv;
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(new { data = _context.MenuItem.Include(m => m.Category).Include(c => c.FoodType).AsEnumerable() });
+            return Json(new { data = _unitOfWork.MenuItem.List(null, null, "Category,FoodType") });
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             try {
-                var objFromDb = _context.MenuItem.FirstOrDefault(u => u.Id == id);
+                var objFromDb = _unitOfWork.MenuItem.Get(m => m.Id == id);
                 if (objFromDb == null) {
                     return Json(new { success = false, message = "Error while deleting" });
                 }
@@ -39,9 +40,8 @@ namespace FoodDelivery.Controllers {
                         System.IO.File.Delete(imgPath);
                     }
                 }
-                _context.MenuItem.Remove(objFromDb);
-                _context.SaveChanges();
-                
+                _unitOfWork.MenuItem.Delete(objFromDb);
+                _unitOfWork.Commit();
             }
             catch(Exception e) {
                 throw e;

@@ -3,26 +3,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
 using ApplicationCore.Models;
+using ApplicationCore.Interfaces;
+
 namespace FoodDelivery.Pages.Admin.FoodTypes {
     public class UpsertModel : PageModel
     {
-
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
         [BindProperty]
         public FoodType FoodTypeObj { get; set; }
 
-        public UpsertModel(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        public UpsertModel(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         public IActionResult OnGet(int? id)
         {
             FoodTypeObj = new FoodType();
             if (id != null)
             {
-                FoodTypeObj = _context.FoodType.Where(u => u.Id == id).FirstOrDefault();
+                FoodTypeObj = _unitOfWork.FoodType.Get(f => f.Id == id);
                 if (FoodTypeObj == null)
                 {
                     return NotFound();
@@ -39,16 +37,16 @@ namespace FoodDelivery.Pages.Admin.FoodTypes {
             }
             if (FoodTypeObj.Id == 0)
             {
-                if (_context.FoodType.Any(f => f.Name == FoodTypeObj.Name)) {
-                    _context.FoodType.Add(FoodTypeObj);
+                var foodTypes = _unitOfWork.FoodType.List();
+                if (!foodTypes.Any(f => f.Name == FoodTypeObj.Name)) {
+                    _unitOfWork.FoodType.Add(FoodTypeObj);
                 }
             }
             else
             {
-                // Update Category object
-                _context.FoodType.Update(FoodTypeObj);
+                _unitOfWork.FoodType.Update(FoodTypeObj);
             }
-            _context.SaveChanges();
+            _unitOfWork.Commit();
             return RedirectToPage("./Index");
         }
     }
