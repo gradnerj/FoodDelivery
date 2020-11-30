@@ -47,8 +47,8 @@
                         <label asp-for="MenuItemObj.MenuItem.Image"></label>
                     </div>
                     <div class="col-9">
-                        @* Maybe change asp-for to name property or just know name property is MenuItemObj.MenuItem.Image *@
-                        <input type="file" id="uploadImgBox" class="form-control" asp-for="MenuItemObj.MenuItem.Image" />
+
+                        <input type="file" id="uploadImgBox" class="form-control" asp-for="MenuItemObj.MenuItem.Image" onchange="ImageSizeCheck()" accept="image/*"/>
                         <span class="text-danger" asp-validation-for="MenuItemObj.MenuItem.Image"></span>
                     </div>
                 </div>
@@ -121,5 +121,19 @@
         }
         return true;
     }
+
+    function ImageSizeCheck() {
+        var img = document.getElementById("uploadImgBox");
+        console.log(img.files[0].height());
+        console.log(img.files[0].width());
+        // 100,000 bytes - 100 KB
+        if (img.files[0].size > 100000) {
+            imgSize = img.files[0].size / 1000;
+            swal('Error', "That image is too large.\nSelected Image Size: " + imgSize + " KB\nMax Image Size: 100 KB", 'error');
+            img.value = "";
+        }
+    }
+
+
 </script>
 }

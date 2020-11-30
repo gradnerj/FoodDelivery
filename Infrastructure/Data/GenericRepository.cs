@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ApplicationCore.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data {
@@ -17,7 +16,7 @@ namespace Infrastructure.Data {
             return _context.Set<T>().Find(id);
         }
 
-        public virtual T Get(Expression<Func<T, bool>> predicate = null, bool asNoTracking = false, string includes = null) {
+        public virtual T Get(Expression<Func<T, bool>> predicate, bool asNoTracking = false, string includes = null) {
             
             if(includes == null) { 
                 if (asNoTracking) {
@@ -48,7 +47,7 @@ namespace Infrastructure.Data {
                 }
             }
         }
-        public virtual async Task<T> GetAsync(Expression<Func<T, bool>> predicate = null, bool asNoTracking = false, string includes = null) {
+        public virtual async Task<T> GetAsync(Expression<Func<T, bool>> predicate, bool asNoTracking = false, string includes = null) {
 
             if (includes == null) {
                 if (asNoTracking) {

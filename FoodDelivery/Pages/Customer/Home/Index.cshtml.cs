@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ApplicationCore.Models;
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 using ApplicationCore.Interfaces;
-using System.Threading.Tasks;
 
 namespace FoodDelivery.Pages.Customer.Home {
     public class IndexModel : PageModel {
