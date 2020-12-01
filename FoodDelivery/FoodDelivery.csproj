@@ -5,13 +5,18 @@
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
     <UserSecretsId>cac7ddbf-c1c3-49dd-b055-cb25b1c5c564</UserSecretsId>
   </PropertyGroup>
-
+    <PropertyGroup>
+	    <TargetFramework>netcoreapp3.1</TargetFramework>
+	    <UseWPF>true</UseWPF>
+	    <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20200920225643_AddedFoodType.cs" />
     <Compile Remove="Migrations\20200920225643_AddedFoodType.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ImageResizer.WebConfig" Version="4.2.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />

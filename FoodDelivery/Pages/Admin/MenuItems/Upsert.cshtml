@@ -97,7 +97,7 @@
             </div>
             @if(Model.MenuItemObj.MenuItem != null) {
                 <div class="col-4 p-4">
-                    <img src="@Model.MenuItemObj.MenuItem.Image" style="border-radius:5px; border: 1px solid #bbb9b9; width:100%"  />
+                    <img id="existingImg" src="@Model.MenuItemObj.MenuItem.Image" style="border-radius:5px; border: 1px solid #bbb9b9; width:100%"  />
                 </div>
             }
         </div>
@@ -124,8 +124,6 @@
 
     function ImageSizeCheck() {
         var img = document.getElementById("uploadImgBox");
-        console.log(img.files[0].height());
-        console.log(img.files[0].width());
         // 100,000 bytes - 100 KB
         if (img.files[0].size > 100000) {
             imgSize = img.files[0].size / 1000;
@@ -133,7 +131,6 @@
             img.value = "";
         }
     }
-
 
 </script>
 }

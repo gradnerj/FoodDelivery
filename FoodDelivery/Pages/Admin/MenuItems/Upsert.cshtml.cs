@@ -9,12 +9,13 @@ using System.IO;
 using System.Linq;
 using ApplicationCore.Models;
 using ApplicationCore.Interfaces;
-
+using ImageResizer;
 namespace FoodDelivery.Pages.Admin.MenuItems {
 
     public class UpsertModel : PageModel {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostEnvironment;
+
 
 
         [BindProperty]
@@ -79,13 +80,17 @@ namespace FoodDelivery.Pages.Admin.MenuItems {
                     }
                     var fullpath = uploads + fileName + extension;
                     using (var fileStream = System.IO.File.Create(fullpath)) {
+
                         files[0].CopyTo(fileStream);
+                        
                     }
                     MenuItemObj.MenuItem.Image = @"\images\menuitems\" + fileName + extension;
-
+                    
                 } else {
                     MenuItemObj.MenuItem.Image = objFromDb.Image;
                 }
+
+               
                 _unitOfWork.MenuItem.Update(MenuItemObj.MenuItem);
             }
             _unitOfWork.Commit();

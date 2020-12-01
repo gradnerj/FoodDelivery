@@ -1,5 +1,6 @@
 ﻿@page
 @model FoodDelivery.Pages.Customer.Home.IndexModel
+@using ImageResizer; 
 @{
     ViewData["Title"] = "Index";
 }
@@ -24,7 +25,7 @@
                                             <div class="col-6 text-right h4" style="color:maroon; max-width:70%">
                                                 <b>$@menuItem.Price.ToString("0.00")</b>
                                             </div>
-                                        </div><img src="@menuItem.Image" class="card-img-top p-2 rounded" />
+                                        </div><img src="@menuItem.Image" class="card-img-top p-2 rounded"/>
                                         <a asp-page="Details" class="btn btn-primary" style="border-radius:2px;" asp-route-id="@menuItem.Id">Details</a>
                                     </div>
                                 </div>
